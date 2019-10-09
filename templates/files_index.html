@@ -1,13 +1,13 @@
-<!-- templates/files_index.html -->
+<!-- templates/playlists_index.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Playlists</h1>
+<h1>Files</h1>
 
-<a href='/playlists/new'>New Playlist</a>
+<a href='/files/new'>New Playlist</a>
 
-{% for playlist in playlists %}
-    <h2>{{ playlist.title }}</h2>
-    <small>{{ playlist.description }}</small>
+{% for file in files %}
+    <h2>{{ file.title }}</h2>
+    <small>{{ file.description }}</small>
 {% endfor %}
 {% endblock %}
