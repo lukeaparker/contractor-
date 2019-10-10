@@ -5,20 +5,20 @@
     <!-- TITLE -->
     <p>
         <label for='file-title'>Title</label><br>
-        <input id='file-title' type='text' name='title' value='{{ files.title }}'/>
+        <input id='file-title' type='text' name='title' value='{{ stl.title }}'/>
     </p>
     
     <!-- DESCRIPTION -->
     <p>
       <label for='description'>Description</label><br>
-      <input id='description' type='text' name='description' value='{{ files.description }}' />
+      <input id='description' type='text' name='description' value='{{ stl.description }}' />
     </p>
     
     <!-- VIDEO LINKS -->
     <p>
       <label for='file-videos'>Videos</label><br>
       <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
-      <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(files.videos) }}</textarea>
+      <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(stl.videos) }}</textarea>
     </p>
     </fieldset>
     

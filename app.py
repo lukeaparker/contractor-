@@ -50,12 +50,6 @@ def files_show(file_id):
     file_id = files.find_one({'_id': ObjectId(file_id)})
     return render_template('files_show.html', stl=file_id)
 
-@app.route('/playlists/<file_id>/edit')
-def playlists_edit(file_id):
-    """Show the edit form for a file."""
-    stls = files.find_one({'_id': ObjectId(file_id)})
-    return render_template('files_edit.html', stls=files, title='Edit Files')
-
 @app.route('/files/<file_id>', methods=['POST'])
 def files_update(file_id):
     """Submit an edited playlist."""
@@ -67,7 +61,14 @@ def files_update(file_id):
     files.update_one(
         {'_id': ObjectId(file_id)},
         {'$set': updated_stl})
-    return redirect(url_for(' _show', file_id=file_id))
+    return redirect(url_for('files_show', file_id=file_id))
+
+@app.route('/files/<file_id>/edit')
+def playlists_edit(file_id):
+    """Show the edit form for a file."""
+    stls = files.find_one({'_id': ObjectId(file_id)})
+    return render_template('files_edit.html', stl=stls, title='Edit Files')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
