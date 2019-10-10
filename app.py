@@ -28,7 +28,7 @@ def stl_index():
 @app.route('/files/new')
 def files_new():
     """Create a new file."""
-    return render_template('new_files.html', files={}, title='New File')
+    return render_template('new_files.html', files={}, title='New File', stl="")
 
 
 #SUBMIT
@@ -68,6 +68,12 @@ def playlists_edit(file_id):
     """Show the edit form for a file."""
     stls = files.find_one({'_id': ObjectId(file_id)})
     return render_template('files_edit.html', stl=stls, title='Edit Files')
+
+@app.route('/files/<file_id>/delete', methods=['POST'])
+def playlists_delete(file_id):
+    """Delete one file."""
+    files.delete_one({'_id': ObjectId(file_id)})
+    return redirect(url_for('stl_index'))
 
 
 if __name__ == '__main__':

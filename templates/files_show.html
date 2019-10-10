@@ -11,4 +11,8 @@
 {% endfor %}
 
 <p><a href='/files/{{ stl._id }}/edit'>Edit</a></p>
+<!-- Delete button -->
+<p><form method='POST' action='/files/{{ stl._id }}/delete'>
+    <button type='submit'>Delete</button>
+</form></p>
 {% endblock %}
