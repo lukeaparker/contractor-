@@ -1,6 +1,9 @@
 import os 
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+
+
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Files')
 client = MongoClient(host=f'{host}?retryWrites=false')
@@ -23,13 +26,14 @@ def stl_index():
 
 #NEW
 @app.route('/files/new')
-def stl_new():
+def files_new():
     """Create a new file."""
     return render_template('new_files.html', files={}, title='New File')
 
+
 #SUBMIT
-@app.route('/files', methods=['POST'])
-def show_index():
+@app.route('/files/new', methods=['POST'])
+def files_():
     """Submit a new playlist."""
     stl = {
         'title': request.form.get('title'),
@@ -37,8 +41,33 @@ def show_index():
         'videos': request.form.get('videos').split()
     }
     stls = files.insert_one(stl).inserted_id
-    return redirect(url_for('stl_index', stls=stls))
+    return redirect(url_for('files_show', file_id=stls))
+    
+#ID
+@app.route('/files/<file_id>')
+def files_show(file_id):
+    """Show a single file."""
+    file_id = files.find_one({'_id': ObjectId(file_id)})
+    return render_template('files_show.html', stl=file_id)
 
+@app.route('/playlists/<file_id>/edit')
+def playlists_edit(file_id):
+    """Show the edit form for a file."""
+    stls = files.find_one({'_id': ObjectId(file_id)})
+    return render_template('files_edit.html', stls=files, title='Edit Files')
+
+@app.route('/files/<file_id>', methods=['POST'])
+def files_update(file_id):
+    """Submit an edited playlist."""
+    updated_stl = {
+        'title': request.form.get('title'),
+        'description': request.form.get('description'),
+        'videos': request.form.get('videos').split()
+    }
+    files.update_one(
+        {'_id': ObjectId(file_id)},
+        {'$set': updated_stl})
+    return redirect(url_for(' _show', file_id=file_id))
 
 if __name__ == '__main__':
     app.run(debug=True)

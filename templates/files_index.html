@@ -7,7 +7,7 @@
 <a href='/files/new'>New Playlist</a>
 
 {% for file in files %}
-    <h2>{{ file.title }}</h2>
+    <h2><a href='files/{{ file._id }}'>{{ file.title }}</a></h2>
     <small>{{ file.description }}</small>
 {% endfor %}
 {% endblock %}
