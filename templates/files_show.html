@@ -6,13 +6,15 @@
 
 <h1>{{ stl.title }}</h1>
 <h2>{{ stl.description }}</h2>
-{% for video in stl.videos %}
-    <iframe width='420' height='315' src='{{ video }}'></iframe>
-{% endfor %}
-
+<!-- <h1> {{ stl.photos }}</h1> -->
+<img src='{{ stl.photos }}' height="315" width="420">
+<p></p><a href='{{ stl.stl_url }}'>Files</a></p>
 <p><a href='/files/{{ stl._id }}/edit'>Edit</a></p>
+
+
 <!-- Delete button -->
 <p><form method='POST' action='/files/{{ stl._id }}/delete'>
     <button type='submit'>Delete</button>
 </form></p>
 {% endblock %}
+

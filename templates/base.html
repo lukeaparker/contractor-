@@ -4,12 +4,16 @@
 <head>
   <meta charset='utf-8'>
   <title>Contractor</title>
+  <link href="src/css/Madeleine.css" rel="stylesheet">
 </head>
 <body>
 
     {% block content %}
         BODY CONTENT GOES HERE
     {% endblock %}
-
 </body>
+<script src= "{{ url_for('static', filename='src/lib/stats.js') }}"></script>
+<script src="{{ url_for('static', filename='src/lib/detector.js') }}"></script>
+<script src="{{ url_for('static', filename='src/lib/three.min.js') }}"></script>
+<script src="{{ url_for('static', filename='src/Madeleine.js') }}"></script>
 </html>

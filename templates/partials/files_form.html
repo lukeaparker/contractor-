@@ -7,6 +7,16 @@
         <label for='file-title'>Title</label><br>
         <input id='file-title' type='text' name='title'/>
     </p>
+       <!-- Photo URL-->
+       <p>
+        <label for='photo'>Photo URL</label><br>
+        <input id='photos' type='text' name='photos' value='{{ stl.photos }}' />
+      </p>
+      <!-- File URL-->
+             <p>
+                <label for='stl-url'>File URL</label><br>
+                <input id='photos' type='text' name='stl_url' value='{{ stl.stl_url }}' />
+              </p>
     
     <!-- DESCRIPTION -->
     <p>
@@ -14,16 +24,11 @@
       <input id='description' type='text' name='description' value='{{ stl.description }}' />
     </p>
     
-    <!-- VIDEO LINKS -->
-    <p>
-      <label for='file-videos'>Videos</label><br>
-      <p>Add videos in the form of 'https://youtube.com/embed/KEY'. Separate with a newline.</p>
-      <textarea id='playlist-videos' name='videos' rows='10'>{{ "\n".join(stl.videos) }}</textarea>
-    </p>
     </fieldset>
     
     <!-- BUTTON -->
     <p>
         <button type='submit'>Save File</button>
     </p>
-   
+
+  

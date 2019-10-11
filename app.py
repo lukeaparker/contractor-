@@ -38,11 +38,18 @@ def files_():
     stl = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'videos': request.form.get('videos').split()
+        'photos': request.form.get('photos'),
+        'stl_url': request.form.get('stl_url')
     }
     stls = files.insert_one(stl).inserted_id
     return redirect(url_for('files_show', file_id=stls))
-    
+
+# @app.route("/uploads/<path:file_id>", methods=["POST"])
+# def save_upload(filename):
+#     mongo.save_file(filename, request.files["file"])
+#     return redirect(url_for("get_upload", filename=filename))
+
+
 #ID
 @app.route('/files/<file_id>')
 def files_show(file_id):
@@ -56,11 +63,18 @@ def files_update(file_id):
     updated_stl = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'videos': request.form.get('videos').split()
+        'photos': request.form.get('photos').split()
     }
+
+    # print(updated_stl['photos'])
     files.update_one(
-        {'_id': ObjectId(file_id)},
-        {'$set': updated_stl})
+        {
+            '_id': files.find_one({'_id': ObjectId(file_id)})
+        },
+        {
+            '$set': updated_stl
+        }
+    )
     return redirect(url_for('files_show', file_id=file_id))
 
 @app.route('/files/<file_id>/edit')
