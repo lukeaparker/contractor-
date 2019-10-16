@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/luke/dev/makeschool/courses/term1/FSP/BEW/projects/contractor/env"
+set -gx VIRTUAL_ENV "/Users/luke/dev/makeschool/courses/term1/FSP/BEW/projects/Print/Contractor/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
