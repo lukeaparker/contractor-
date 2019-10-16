@@ -2,6 +2,8 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import speach
+import octoprint.plugin
 
 
 
@@ -20,9 +22,16 @@ app = Flask(__name__)
 
 #HOMEPAGE
 @app.route('/')
+def index():
+    return render_template('index.html')
+
+
+
+@app.route('/files_index')
 def stl_index():
     """Show all playlists."""
     return render_template('files_index.html', files=files.find())
+
 
 #NEW
 @app.route('/files/new')

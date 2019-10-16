@@ -2,9 +2,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Files</h1>
-<p>align="right">
-  <input type="button" value="Click Me" />
-</p>
-{% endfor %}
+<form action='/files_index'>
+<h1>Dashboard</h1>
+  <button type="submit">Mannage Files</button>  
+</form>
 {% endblock %}

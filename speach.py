@@ -1,27 +1,37 @@
 import speech_recognition as sr
 
-# Creates an instance of Recognizer(), detects voice input
-r = sr.Recognizer()
-# TODO: allows users to choose input devices
-# receives audio from users first mic
-mic = sr.Microphone()
-with mic as source:
-    # checks for commands
-    while True:
-        r.adjust_for_ambient_noise(source)
-        print("Say Something")
-        try:
-            audio = r.listen(source)
-            audio_str = r.recognize_google(audio)
+class Speach():
+    def __init__(self):
+        # Creates an instance of Recognizer(), detects voice input
+        self.r = sr.Recognizer()
+        # TODO: allows users to choose input devices
+        # receives audio from users first mic
+        self.mic = sr.Microphone()
 
-            # start command is yo
-            if "home bed" in audio_str:
-                r.adjust_for_ambient_noise(source)
-                print("homing bed")
+    def toggle(self, toggle_str, output):
+        with mic as source:
+            # checks for commands
+            while True:
+                self.r.adjust_for_ambient_noise(source)
+                print("Say Something")
+                try:
+                    audio = self.r.listen(source)
+                    audio_str = self.r.recognize_google(audio)
 
-            # elif "Rick Rolled" in audio_str:
-            #     r.adjust_for_ambient_noise(source)
-            #     print("here's the link: https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-                
-        except sr.UnknownValueError:
-            print("Say that again?")
+                    # start command is yo
+                    if toggle_str in audio_str:
+                        self.r.adjust_for_ambient_noise(source)
+                        print(output)
+                except sr.UnknownValueError:
+                    print("Say that again?")
+
+def test_toggle():
+    toggle_str = "home axis"
+    output = "homing axis"
+    speach = Speach()
+    Speach.toggle(toggle_str, output)
+
+test_toggle() 
+
+
+
