@@ -8,28 +8,32 @@ class Speach():
         # receives audio from users first mic
         self.mic = sr.Microphone()
 
-    def toggle(self, toggle_str, output):
-        with mic as source:
-            # checks for commands
+    def get_command(self, toggle_str, output):
+        with self.mic as source:
             while True:
-                self.r.adjust_for_ambient_noise(source)
-                print("Say Something")
-                try:
-                    audio = self.r.listen(source)
-                    audio_str = self.r.recognize_google(audio)
-
-                    # start command is yo
-                    if toggle_str in audio_str:
-                        self.r.adjust_for_ambient_noise(source)
-                        print(output)
-                except sr.UnknownValueError:
-                    print("Say that again?")
+                # checks for commands
+                if "home" in toggle_str:
+                    self.r.adjust_for_ambient_noise(source)
+                    print("Say Something")
+                    try:
+                        audio = self.r.listen(source)
+                        audio_str = self.r.recognize_google(audio)
+                        words = audio_str.split()
+                        if toggle_str == words[0]:
+                            del words[0]
+                        print(words)
+                        return words
+                    except sr.UnknownValueError:
+                        print("Say that again?")
+                        return False 
+                        
+                
 
 def test_toggle():
-    toggle_str = "home axis"
+    toggle_str = "home"
     output = "homing axis"
     speach = Speach()
-    Speach.toggle(toggle_str, output)
+    # speach.get_command(toggle_str, output)
 
 test_toggle() 
 

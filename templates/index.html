@@ -4,6 +4,9 @@
 {% block content %}
 <form action='/files_index'>
 <h1>Dashboard</h1>
+{% if command %}
+<label>{{ " ".join(command) }}</label> 
+{% endif %}
   <button type="submit">Mannage Files</button>  
 </form>
 {% endblock %}
