@@ -2,7 +2,9 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
-import speach
+import speech
+
+
 
 
 
@@ -13,11 +15,6 @@ files = db.files
 
 app = Flask(__name__)
 
-#MOCK JSON DATA
-# files = [
-#     { 'title': 'Cat', 'description': 'Cat .gcode file sliced for ender 3.' },
-#     { 'title': 'Building', 'description': 'Building .gcode file sliced for ender 3.' }
-# ]
 
 #HOMEPAGE 
 @app.route('/')

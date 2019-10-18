@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Files</h1>
 
-<a href='/files/new'>New Playlist</a>
+<a href='/files/new'>New File</a>
 
 {% for file in files %}
     <h2><a href='files/{{ file._id }}'>{{ file.title }}</a></h2>
